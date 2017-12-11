@@ -42,7 +42,7 @@ gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
-  gem 'factory_girl_rails'
+  gem 'factory_bot'
   gem 'ffaker'
   
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
