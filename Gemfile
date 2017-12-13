@@ -38,7 +38,6 @@ gem 'redis', '~> 3.0'
 
 gem 'sidekiq'
 gem 'fae-rails'
-gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
