@@ -253,7 +253,6 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
-  devise
   factory_bot
   fae-rails
   ffaker
