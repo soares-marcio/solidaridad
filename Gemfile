@@ -37,8 +37,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 3.0'
 
 gem 'sidekiq'
-gem 'fae-rails'
-gem 'materialize-sass'
+gem 'devise'
+gem 'materialize-sass' 
+
 gem 'material_icons'
 
 group :development, :test do
