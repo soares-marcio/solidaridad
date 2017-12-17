@@ -8,6 +8,8 @@ ENV INSTALL_PATH /solidaridad
 RUN mkdir -p $INSTALL_PATH
 # Seta o nosso path como o diretório principal
 WORKDIR $INSTALL_PATH
+# Ignora a instalação da documentação das gems
+RUN echo 'gem: --no-rdoc --no-ri' >> "$INSTALL_PATH/.gemrc"
 # Copia o nosso Gemfile para dentro do container
 COPY Gemfile ./
 # Seta o path para as Gems
