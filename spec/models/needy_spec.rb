@@ -12,7 +12,10 @@ RSpec.describe Needy, type: :model do
     expect(@needy).to be_invalid
   end
 
-  it "by id" do
-    
+  it "have many categories" do
+    expect(@needy).to have_many(:categories)
   end
+  it "have many users" do
+    expect(@needy).to have_many(:users)
+  end  
 end

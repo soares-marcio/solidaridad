@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   before do
     @category = create(:category)
-    @user = create(:user)
-    @users_has_category = 5.times{create(:users_has_category, category: @category)}
   end
   it "valid" do
     expect(@category).to be_valid
@@ -18,4 +16,9 @@ RSpec.describe Category, type: :model do
   it "has many users" do
     expect(@category).to have_many(:users)
   end
+
+  it "has many needies" do
+    expect(@category).to have_many(:needies)
+  end
+
 end
