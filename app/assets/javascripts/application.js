@@ -18,6 +18,5 @@ $(document).ready(function(){
   $('.button-collapse').sideNav();
   $('.parallax').parallax();
 });
-
-//= require_tree .
 //= require turbolinks
+//= require_tree .
