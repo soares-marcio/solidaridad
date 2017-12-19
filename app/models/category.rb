@@ -4,4 +4,6 @@ class Category < ApplicationRecord
 
   has_many :users_has_category, dependent: :destroy
   has_many :users, through: :users_has_category
+
+  validates :name, presence: true
 end

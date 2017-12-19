@@ -42,11 +42,14 @@ gem 'materialize-sass'
 
 gem 'material_icons'
 
-group :development, :test do
+group :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot'
   gem 'ffaker'
-  
+  gem 'database_cleaner'  
+  gem 'shoulda-matchers', '~> 3.1'
+end
+group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 end

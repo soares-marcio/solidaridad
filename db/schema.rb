@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217151253) do
+ActiveRecord::Schema.define(version: 20171218232012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "needies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.text     "description"
+    t.integer  "quantity_person"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "needies_has_categories", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "needy_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_needies_has_categories_on_category_id", using: :btree
+    t.index ["needy_id"], name: "index_needies_has_categories_on_needy_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -45,4 +71,28 @@ ActiveRecord::Schema.define(version: 20171217151253) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
+  create_table "users_has_categories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_users_has_categories_on_category_id", using: :btree
+    t.index ["user_id"], name: "index_users_has_categories_on_user_id", using: :btree
+  end
+
+  create_table "users_has_needies", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "needy_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["needy_id"], name: "index_users_has_needies_on_needy_id", using: :btree
+    t.index ["user_id"], name: "index_users_has_needies_on_user_id", using: :btree
+  end
+
+  add_foreign_key "needies_has_categories", "categories"
+  add_foreign_key "needies_has_categories", "needies"
+  add_foreign_key "users_has_categories", "categories"
+  add_foreign_key "users_has_categories", "users"
+  add_foreign_key "users_has_needies", "needies"
+  add_foreign_key "users_has_needies", "users"
 end
