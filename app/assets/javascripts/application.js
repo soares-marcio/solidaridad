@@ -19,5 +19,4 @@ $(document).ready(function(){
   $('.parallax').parallax();
 });
 //= require turbolinks
-//= require underscore
 //= require_tree .
