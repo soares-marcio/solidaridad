@@ -18,8 +18,6 @@ $(document).ready(function(){
   $('.button-collapse').sideNav();
   $('.parallax').parallax();
 });
-
-//= require_tree .
 //= require turbolinks
 //= require underscore
-//= require gmaps/google
+//= require_tree .

@@ -42,10 +42,6 @@ gem 'materialize-sass'
 
 gem 'material_icons'
 
-# Google maps
-
-gem 'gmaps4rails'
-
 group :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot'
