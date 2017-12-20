@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   devise_for :users
   
   root 'pages#index'
-  get '/support', to: 'pages#support'
+  get :needies, to: 'pages#needies'
   resources :pages
 
-
-  mount Sidekiq::Web => '/sidekiq'
+  mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
 end

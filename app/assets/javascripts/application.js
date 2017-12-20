@@ -14,9 +14,7 @@
 //= require jquery_ujs
 //= require materialize-sprockets
 
-$(document).ready(function(){
-  $('.button-collapse').sideNav();
-  $('.parallax').parallax();
-});
+
 //= require turbolinks
-//= require_tree .
+// require ./_maps/_application
+//=require_tree ./
