@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%=yield :maps%>
   </head>
 
   <body class="<%=controller_name%> <%=action_name%>">
-    <%= render "layouts/header" %>
+    <%= render "_content_for/header" %>
     <%= yield %>
-    <%= render "layouts/footer" %>
+    <%= render "_content_for/footer" %>
+    <%=yield :maps%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

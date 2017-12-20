@@ -2,6 +2,11 @@ class NeediesController < ApplicationController
 
   def index
     @needy = Needy.new
+    @needies = Needy.all
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
   
   def create
@@ -12,7 +17,7 @@ class NeediesController < ApplicationController
         format.json { render @needy, status: :created, location: root_path}
       else
         format.html { render :index }
-        format.json { render json: root_path, status: :unprocessable_entity }
+        format.json { render json: @needy.errors, status: :unprocessable_entity }
       end
     end
   end

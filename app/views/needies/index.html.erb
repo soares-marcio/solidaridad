@@ -17,7 +17,7 @@
           <div class="card-content grey lighten-4">
             <div id="add-needy">
               <div class="row">
-                <%= form_for(@needy) do |form| %>
+                <%= form_for(@needy, html: {class: "col s12"}) do |form| %>
                   <%=render partial: '_content_for/error_message', locals: {object: @needy}%>
                   <div class="row">
                     <div class="input-field col s12">
@@ -42,7 +42,8 @@
                     </div>
                   </div>
                   <div class="actions">
-                    <%= form.submit class: "waves-effect waves-light btn-large amber", value: "Adicionar", data: {disable_with: 'Adicionando...'} %>
+                    <%= form.submit class: "waves-effect waves-light btn-large amber btn-form", value: 'Adicionar', data: {disable_with: 'Adicionando...'}%>
+                      
                   </div>
                 <% end %>
               </div>
