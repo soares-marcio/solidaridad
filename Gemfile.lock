@@ -53,6 +53,7 @@ GEM
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     crass (1.0.3)
+    database_cleaner (1.6.2)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -164,6 +165,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    shoulda-matchers (3.1.2)
+      activesupport (>= 4.0.0)
     sidekiq (5.0.5)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -208,6 +211,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  database_cleaner
   devise
   factory_bot
   ffaker
@@ -222,6 +226,7 @@ DEPENDENCIES
   redis (~> 3.0)
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
+  shoulda-matchers (~> 3.1)
   sidekiq
   spring
   spring-watcher-listen (~> 2.0.0)

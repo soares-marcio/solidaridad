@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :categories, through: :users_has_category
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable
+         :recoverable, :rememberable, :trackable, :validatable #, :confirmable, :lockable
 end

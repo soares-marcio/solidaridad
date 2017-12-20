@@ -4,4 +4,8 @@ class Needy < ApplicationRecord
 
   has_many :users_has_needy, dependent: :destroy
   has_many :users, through: :users_has_needy  
+
+  validates :address, presence: true
+
+  
 end

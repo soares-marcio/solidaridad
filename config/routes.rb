@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   
   root 'pages#index'
   resources :needies
+  get '/support', to: 'pages#support'
+  resources :pages
 
 
   mount Sidekiq::Web => '/sidekiq'
