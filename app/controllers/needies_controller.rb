@@ -1,5 +1,8 @@
 class NeediesController < ApplicationController
 
+  def index
+  end
+  
   def create
     @needy = Needy.new(needy_params)
     respond_to do |format|

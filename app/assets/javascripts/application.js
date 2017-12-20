@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require materialize-sprockets
-//= require scripts
 //= require turbolinks
 // require ./_maps/_application
 //=require_tree ./

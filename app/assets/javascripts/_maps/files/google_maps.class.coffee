@@ -1,4 +1,4 @@
-$('.pages.needies').ready ()->
+$('.needies.index').ready ()->
   class Mapper
     self = null
     constructor: (mapped)->
@@ -13,12 +13,17 @@ $('.pages.needies').ready ()->
         zoom: @zoom.initialView
         center: @myLatLng
       @map = new google.maps.Map(document.getElementById('map'), @mapOptions)
+      @infoWindow = null
       @map.setCenter(@location)
       
     getLocation: ->
       if navigator.geolocation
         navigator.geolocation.getCurrentPosition (position)->
           self.map.setCenter({lat: position.coords.latitude, lng: position.coords.longitude})
+        , ()->
+            handleLocationError(true, self.infoWindow, map.getCenter())
+      else
+        handleLocationError(false, self.infoWindow, map.getCenter())
     addMarker: (location, title)->
       marker = new google.maps.Marker(
         position: location,
@@ -41,7 +46,7 @@ $('.pages.needies').ready ()->
         marker.setMap map
 
     showMarkers: ->
-      self.setAllMap @map
+      self.setAllMap self.map
 
     hideMarkers: ->
       self.setAllMap null
@@ -54,6 +59,9 @@ $('.pages.needies').ready ()->
       @hideMarkers()
       @removeListeners()
       markers = []
+    handleLocationError: (browserHasGeolocation, infoWindow, pos) ->
+      if infoWindow
+        infoWindow.setPosition(pos)
+        infoWindow.setContent(browserHasGeolocation ? "Error: The Geolocation service failed." : "Error: Your browser doesn\'t support geolocation.")
   mapper = new Mapper()
-  console.log mapper.getLocation()
-  # mapper.map.setCenter()
+  mapper.getLocation()
