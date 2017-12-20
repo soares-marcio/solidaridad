@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require materialize-sprockets
 //= require turbolinks
-// require ./_maps/_application
+//= require ./_maps/_application
 //=require_tree ./

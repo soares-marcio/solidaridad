@@ -62,6 +62,6 @@ $('.needies.index').ready ()->
     handleLocationError: (browserHasGeolocation, infoWindow, pos) ->
       if infoWindow
         infoWindow.setPosition(pos)
-        infoWindow.setContent(browserHasGeolocation ? "Error: The Geolocation service failed." : "Error: Your browser doesn\'t support geolocation.")
+        infoWindow.setContent(browserHasGeolocation ? "Erro: O serviço de Geolocalização falhou." : "Erro: Seu navegador não suporta geolocalização.")
   mapper = new Mapper()
   mapper.getLocation()

@@ -39,7 +39,7 @@ gem 'redis', '~> 3.0'
 gem 'sidekiq'
 gem 'devise'
 gem 'materialize-sass' 
-
+gem "font-awesome-rails"
 gem 'material_icons'
 
 group :test do

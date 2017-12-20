@@ -1,17 +1,18 @@
 class NeediesController < ApplicationController
 
   def index
+    @needy = Needy.new
   end
   
   def create
     @needy = Needy.new(needy_params)
     respond_to do |format|
       if @needy.save
-        format.html { redirect_to root_url, notice: 'Needy was successfully created.' }
-        format.json { render @needy, status: :created, location: root_url}
+        format.html { redirect_to root_path, notice: 'Needy was successfully created.' }
+        format.json { render @needy, status: :created, location: root_path}
       else
-        format.html { render root_url }
-        format.json { render json: root_url, status: :unprocessable_entity }
+        format.html { render :index }
+        format.json { render json: root_path, status: :unprocessable_entity }
       end
     end
   end
