@@ -3,6 +3,7 @@ class window.Mapper
   constructor: (mapped)->
     @markers = []
     self = @
+    @url = null
     @zoom = 
       initialView: 15
       closeView: 18
@@ -12,15 +13,21 @@ class window.Mapper
       zoom: @zoom.initialView
       center: @myLatLng
     @map = new google.maps.Map(document.getElementById('map'), @mapOptions)
-    @infoWindow = null
+    @infoWindow = new google.maps.InfoWindow()
     @map.setCenter(@location)
-    @needies = []
     @markers = []
+    @needies = []
+  initialize: (url)->
+    self.getJSON(url)
+
   getJSON: (url)->
     $.getJSON url, (data)->
       $.each data, (i, e)->
-        console.log e
-        self.needies.push(e)    
+        self.addMarkers(e)
+        return
+      return
+    return
+
   getLocation: ->
     if navigator.geolocation
       navigator.geolocation.getCurrentPosition (position)->
@@ -30,25 +37,25 @@ class window.Mapper
           self.handleLocationError(true, self.infoWindow, self.map.getCenter(self.location))
     else
       self.handleLocationError(false, self.infoWindow, self.map.getCenter(self.location))
+
   addMarker: (location, title)->
     marker = new google.maps.Marker(
       position: location,
       title: title,
       map: self.map
     )
-    markers.push marker
+    self.markers.push(marker)
     google.maps.event.addListener marker, 'click', ->
       @map.setZoom self.zoom.closeView
       @map.setCenter marker.getPosition()
 
-  addMarkers: ->
-    _.each self.needies, (marker) =>
-      position = new google.maps.LatLng marker['latitude'], marker['longitude']
-      title = "#{marker['address']}"
-      self.addMarker position, title
+  addMarkers: (needy)->
+    position = new google.maps.LatLng needy.latitude, needy.longitude
+    title = "#{needy.address}"
+    self.addMarker position, title
 
   drawMarkers: (map)->
-    _.each markers, (marker)->
+    $.each self.markers, (marker)->
       marker.setMap map
 
   showMarkers: ->
@@ -59,6 +66,18 @@ class window.Mapper
     while i < @markers.length
       @markers[i].setMap map
       i++
+
+  bindInfoWindow: (marker, map, infowindow, details)->
+    google.maps.event.addListener marker, 'click', (e)->
+      if(!marker.open)
+        infowindow.setContent(details);
+        infowindow.open(map, marker);
+      else
+        infowindow.close();
+        marker.open = false;
+      google.maps.event.addListener map, 'click', (e)->
+        infowindow.close();
+        marker.open = false;
 
   hideMarkers: ->
     self.setAllMap null

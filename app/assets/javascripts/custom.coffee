@@ -3,5 +3,5 @@ $('.needies.index, .needies.create').ready ()->
   $('.parallax').parallax();
   
   mapper = new Mapper()
-  mapper.getJSON('/needies.json')
+  mapper.initialize('/needies.json')
   # mapper.getLocation()
