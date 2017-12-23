@@ -38,12 +38,14 @@ class window.Mapper
     else
       self.handleLocationError(false, self.infoWindow, self.map.getCenter(self.location))
 
-  addMarker: (location, title)->
+  addMarker: (needy, location)->
     marker = new google.maps.Marker(
       position: location,
-      title: title,
+      title: needy.address,
       map: self.map
     )
+    details = self.setPopUp(needy)
+    self.bindInfoWindow(marker, self.map, self.infoWindow, details)
     self.markers.push(marker)
     google.maps.event.addListener marker, 'click', ->
       @map.setZoom self.zoom.closeView
@@ -51,8 +53,8 @@ class window.Mapper
 
   addMarkers: (needy)->
     position = new google.maps.LatLng needy.latitude, needy.longitude
-    title = "#{needy.address}"
-    self.addMarker position, title
+    address = "#{needy.address}"
+    self.addMarker needy, position
 
   drawMarkers: (map)->
     $.each self.markers, (marker)->
@@ -66,7 +68,12 @@ class window.Mapper
     while i < @markers.length
       @markers[i].setMap map
       i++
-
+  setPopUp: (needy)->
+    content = new String()
+    content = content.concat("<strong>Endereço</strong>: " + needy.address + "<br>")
+    content = content.concat("<strong>Latitude</strong>: " + needy.latitude + "<br>")
+    content = content.concat("<strong>Longitude</strong>: " + needy.longitude + "<br>")
+    content
   bindInfoWindow: (marker, map, infowindow, details)->
     google.maps.event.addListener marker, 'click', (e)->
       if(!marker.open)

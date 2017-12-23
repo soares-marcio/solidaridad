@@ -24,7 +24,6 @@ class NeediesController < ApplicationController
 
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
     def needy_params
       params.require(:needy).permit(:name, :address, :description, :quantity_person)
     end
