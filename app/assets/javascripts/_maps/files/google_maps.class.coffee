@@ -14,11 +14,13 @@ class window.Mapper
       center: @myLatLng
     @map = new google.maps.Map(document.getElementById('map'), @mapOptions)
     @infoWindow = new google.maps.InfoWindow()
+    @autocomplete = new google.maps.places.Autocomplete((document.getElementById('needy_address')),{types: ['geocode']})
     @map.setCenter(@location)
     @markers = []
     @needies = []
   initialize: (url)->
     self.getJSON(url)
+    self.autocomplete.addListener('place_changed', self.fillInAddress);
 
   getJSON: (url)->
     $.getJSON url, (data)->
@@ -85,7 +87,10 @@ class window.Mapper
       google.maps.event.addListener map, 'click', (e)->
         infowindow.close();
         marker.open = false;
-
+  fillInAddress: ->
+    place = self.autocomplete.getPlace()
+    document.getElementById('needy_latitude').value = place.geometry.location.lat()
+    document.getElementById('needy_longitude').value = place.geometry.location.lng()    
   hideMarkers: ->
     self.setAllMap null
 

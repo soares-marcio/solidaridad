@@ -18,6 +18,8 @@
             <div id="add-needy">
               <div class="row">
                 <%= form_for(@needy, html: {class: "col s12"}) do |form| %>
+                  <%=form.hidden_field :latitude %>
+                  <%=form.hidden_field :longitude%>
                   <%=render partial: '_content_for/error_message', locals: {object: @needy}%>
                   <div class="row">
                     <div class="input-field col s12">

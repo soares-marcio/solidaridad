@@ -12,6 +12,7 @@ class NeediesController < ApplicationController
   def create
     @needy = Needy.new(needy_params)
     respond_to do |format|
+      byebug
       if @needy.save
         format.html { redirect_to root_path, notice: 'Needy was successfully created.' }
         format.json { render @needy, status: :created, location: root_path}
@@ -25,6 +26,6 @@ class NeediesController < ApplicationController
 
   private
     def needy_params
-      params.require(:needy).permit(:name, :address, :description, :quantity_person)
+      params.require(:needy).permit(:name, :address, :latitude, :longitude, :description, :quantity_person)
     end
 end
