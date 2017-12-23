@@ -3,5 +3,10 @@ $('.needies.index, .needies.create').ready ()->
   $('.parallax').parallax();
   
   mapper = new Mapper()
-  mapper.initialize('/needies.json')
+  options =
+    {
+      url: '/needies.json'
+      latLng: {lat: 'needy_latitude', lng: 'needy_longitude'}
+    }
+  mapper.initialize(options)
   # mapper.getLocation()

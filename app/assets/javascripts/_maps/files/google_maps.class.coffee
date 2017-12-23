@@ -4,6 +4,8 @@ class window.Mapper
     @markers = []
     self = @
     @url = null
+    @lat = null
+    @lng = null
     @zoom = 
       initialView: 15
       closeView: 18
@@ -18,8 +20,10 @@ class window.Mapper
     @map.setCenter(@location)
     @markers = []
     @needies = []
-  initialize: (url)->
-    self.getJSON(url)
+  initialize: (opts)->
+    self.lat = opts.latLng.lat
+    self.lng = opts.latLng.lng
+    self.getJSON(opts.url)
     self.autocomplete.addListener('place_changed', self.fillInAddress);
 
   getJSON: (url)->
@@ -50,9 +54,24 @@ class window.Mapper
     self.bindInfoWindow(marker, self.map, self.infoWindow, details)
     self.markers.push(marker)
     google.maps.event.addListener marker, 'click', ->
-      @map.setZoom self.zoom.closeView
-      @map.setCenter marker.getPosition()
-
+      # @map.setZoom self.zoom.closeView
+      self.map.panTo marker.getPosition()
+      self.smoothZoom(self.map, self.zoom.closeView, self.map.getZoom())
+      return
+    return
+  smoothZoom: (map, max, cnt)->
+    if cnt >= max
+      return
+    else
+      zoom = google.maps.event.addListener map, 'zoom_changed', (event)->
+              google.maps.event.removeListener(zoom)
+              self.smoothZoom(map, max, (cnt + 1))
+              return
+      setTimeout -> 
+        map.setZoom(cnt)
+        return
+      , 40
+    return
   addMarkers: (needy)->
     position = new google.maps.LatLng needy.latitude, needy.longitude
     address = "#{needy.address}"
@@ -87,10 +106,16 @@ class window.Mapper
       google.maps.event.addListener map, 'click', (e)->
         infowindow.close();
         marker.open = false;
+    # google.maps.event.addListener marker, 'mouseover', ()->
+    #   infowindow.setContent(details);
+    #   infowindow.open(map, marker)
+    # google.maps.event.addListener map, 'click', (e)->
+    #   infowindow.close();
+    #   marker.open = false;      
   fillInAddress: ->
     place = self.autocomplete.getPlace()
-    document.getElementById('needy_latitude').value = place.geometry.location.lat()
-    document.getElementById('needy_longitude').value = place.geometry.location.lng()    
+    document.getElementById(self.lat).value = place.geometry.location.lat()
+    document.getElementById(self.lng).value = place.geometry.location.lng()    
   hideMarkers: ->
     self.setAllMap null
 
