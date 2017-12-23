@@ -7,7 +7,7 @@ class window.Mapper
     @url = @opts.url
     @lat = @opts.latLng.lat
     @lng = @opts.latLng.lng
-    @field_complete = @opts.field_complete
+    @field_complete = document.getElementById(@opts.field_complete)
     @zoom = 
       initialView: 15
       closeView: 18
@@ -15,10 +15,20 @@ class window.Mapper
     @myLatLng = new google.maps.LatLng(@location.lat, @location.lng)
     @mapOptions = 
       zoom: @zoom.initialView
-      center: @myLatLng
+      center: @myLatLng,
+      styles: [
+        {
+          "featureType": "poi",
+          "stylers": [
+            {
+              "visibility": "off"
+            }
+          ]
+        }
+      ]
     @map = new google.maps.Map(document.getElementById('map'), @mapOptions)
     @infoWindow = new google.maps.InfoWindow()
-    @autocomplete = new google.maps.places.Autocomplete((document.getElementById(self.field_complete)),{types: ['geocode']})
+    @autocomplete = new google.maps.places.Autocomplete((self.field_complete),{types: ['geocode'], placeholder: null})
     @map.setCenter(@location)
     @markers = []
     @needies = []

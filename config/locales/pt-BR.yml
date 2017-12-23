@@ -1,0 +1,193 @@
+pt-BR:
+  # formatos de data e hora
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %B"
+      long: "%d de %B de %Y"
+      custom: "%d/%m/%Y"
+      custom1: "%d.%m.%Y"
+      only_day: "%d"
+      only_weekday: "%A"
+      only_year: "%Y"
+      month_complete: "%B"
+      month_abv: "%b"
+      header_format_date: "%B de %Y"
+      edition_format_date: "%B/%Y"
+      
+
+    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
+    order:
+      - :day
+      - :month
+      - :year
+
+  time:
+    formats:
+      default: "%A, %d de %B de %Y, %H:%M h"
+      month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+      abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
+      short: "%d/%m, %H:%M h"
+      long: "%A, %d de %B de %Y, %H:%M h"
+      custom: "%d/%m/%Y"
+      edition_format_date: "%B/%Y"
+      only_day: "%d"
+      only_weekday: "%A"
+      only_year: "%Y"
+      month_complete: "%B"
+      month_abv: "%b"
+      complete_extension: '%d de %B de %Y'
+      header_format_date: "%B de %Y"
+      comment_format_date: "em %d de %B de %Y às %Hh%M"
+      display_time_now: "%d/%m/%Y %H:%M"
+    am: ''
+    pm: ''
+
+  # date helper distanci em palavras
+  datetime:
+    distance_in_words:
+      half_a_minute: 'meio minuto'
+      less_than_x_seconds:
+        one: 'menos de 1 segundo'
+        other: 'menos de {{count}} segundos'
+
+      x_seconds:
+        one: '1 segundo'
+        other: '{{count}} segundos'
+
+      less_than_x_minutes:
+        one: 'menos de um minuto'
+        other: 'menos de {{count}} minutos'
+
+      x_minutes:
+        one: '1 minuto'
+        other: '{{count}} minutos'
+
+      about_x_hours:
+        one: 'aproximadamente 1 hora'
+        other: 'aproximadamente {{count}} horas'
+
+      x_days:
+        one: '1 dia'
+        other: '{{count}} dias'
+
+      about_x_months:
+        one: 'aproximadamente 1 mês'
+        other: 'aproximadamente {{count}} meses'
+
+      x_months:
+        one: '1 mês'
+        other: '{{count}} meses'
+
+      about_x_years:
+        one: 'aproximadamente 1 ano'
+        other: 'aproximadamente {{count}} anos'
+
+      over_x_years:
+        one: 'mais de 1 ano'
+        other: 'mais de {{count}} anos'
+
+  # numeros
+  number:
+    format:
+      precision: 3
+      separator: ','
+      delimiter: '.'
+    currency:
+      format:
+        unit: 'R$'
+        precision: 2
+        format: '%u %n'
+        separator: ','
+        delimiter: '.'
+    percentage:
+      format:
+        delimiter: '.'
+    precision:
+      format:
+        delimiter: '.'
+    human:
+      format:
+        precision: 1
+        delimiter: '.'
+  support:
+    array:
+      sentence_connector: "e"
+      skip_last_comma: true
+
+  # Active Record
+  activerecord:
+    models:
+      needy: Pessoas em estado de vulnerabilidade
+    attributes:
+      needy:
+        name: Nome
+        address: Endereço
+        quantity_person: Quantidade de pessoas
+        description: Descrição
+ 
+      # will translate User attribute "login" as "Handle"
+    errors:
+      template:
+        header:
+          one: "Não pôde ser salvo: 1 erro"
+          other: "Não pôde ser salvo: %{count} erros."
+        body: "Por favor, cheque os seguintes campos:"
+      messages:
+        inclusion: "não está incluso na lista"
+        exclusion: "{{attribute}} não está disponível"
+        uniqueness: "já está sendo utilizado."
+        invalid: "não é válida"
+        confirmation: "não bate com a nova senha"
+        accepted: "precisa ser aceito"
+        empty: "não pode ser vazio"
+        blank: "não pode ser vazio"
+        too_long: "é muito longa (não mais do que %{count} caracteres)"
+        too_short: "é muito curta (não menos do que %{count} caracteres)"
+        wrong_length: "não é do tamanho correto (precisa ter %{count} caracteres)"
+        taken: "não está disponível ou já está sendo utilizado."
+        not_a_number: "não é um número"
+        greater_than: "precisa ser maior do que %{count}"
+        greater_than_or_equal_to: "precisa ser maior ou igual a {{count}}"
+        equal_to: "precisa ser igual a %{count}"
+        less_than: "precisa ser menor do que %{count}"
+        less_than_or_equal_to: "precisa ser menor ou igual a %{count}"
+        odd: "precisa ser ímpar"
+        even: "precisa ser par"
+
+
+  #Translatio will_paginate
+  views:
+    pagination:
+      first: "<i class='glyphicon glyphicon-fast-backward'></i>"
+      last: "<i class='glyphicon glyphicon-fast-forward'></i>"
+      previous: "<i class='glyphicon glyphicon-step-backward'></i>"
+      next: "<i class='glyphicon glyphicon-step-forward'></i>"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Não %{entry_name} Encontrado"
+          one: "Mostrando <b>1</b> %{entry_name}"
+          other: "Mostrando <b>todos %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Mostrando %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> no total"
+  will_paginate:
+    next_label: "<!--Próximos--> <i class='fa fa-arrow-circle-right'></i><!--&#8594;-->"
+    page_entries_info:
+      multi_page: Exibindo %{model} %{from} - %{to} de %{count} no total
+      multi_page_html: Exibindo %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> de <b>%{count}</b> no total
+      single_page:
+        one: Exibindo 1 %{model}
+        other: Exibindo todos os %{count} %{model}
+        zero: Nenhum %{model} encontrado
+      single_page_html:
+        one: Exibindo <b>1</b> %{model}
+        other: Exibindo <b>todos os&nbsp;%{count}</b> %{model}
+        zero: Nenhum %{model} encontrado
+    page_gap: "&hellip;"
+    previous_label: "<!--&#8592;--><i class='fa fa-arrow-circle-left'></i> <!--Anteriores-->"
