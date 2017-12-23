@@ -7,6 +7,7 @@ class window.Mapper
     @url = @opts.url
     @lat = @opts.latLng.lat
     @lng = @opts.latLng.lng
+    @icon = '/images/icon.png'
     @field_complete = document.getElementById(@opts.field_complete)
     @zoom = 
       initialView: 15
@@ -14,7 +15,7 @@ class window.Mapper
     @location = {lat: -23.5505, lng: -46.6333}
     @myLatLng = new google.maps.LatLng(@location.lat, @location.lng)
     @mapOptions = 
-      zoom: @zoom.initialView
+      zoom: @zoom.initialView,
       center: @myLatLng,
       styles: [
         {
@@ -60,7 +61,8 @@ class window.Mapper
     marker = new google.maps.Marker(
       position: location,
       title: needy.address,
-      map: self.map
+      map: self.map,
+      icon: self.icon
     )
     details = self.setPopUp(needy)
     self.bindInfoWindow(marker, self.map, self.infoWindow, details)
