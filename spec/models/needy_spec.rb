@@ -18,4 +18,8 @@ RSpec.describe Needy, type: :model do
   it "have many users" do
     expect(@needy).to have_many(:users)
   end  
+  it 'have latitude and longitude invalid' do
+    needy = build(:needy, {latitude: nil, longitude: nil})
+    expect(needy).to be_invalid
+  end
 end

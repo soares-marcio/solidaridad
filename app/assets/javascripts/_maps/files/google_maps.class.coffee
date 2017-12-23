@@ -8,7 +8,8 @@ class window.Mapper
     @lat = @opts.latLng.lat
     @lng = @opts.latLng.lng
     @icon = '/images/icon.png'
-    @field_complete = document.getElementById(@opts.field_complete)
+    @fieldAutoComplete = document.getElementById(@opts.field_complete)
+    @fieldAutoComplete.placeholder = ''
     @zoom = 
       initialView: 15
       closeView: 18
@@ -17,6 +18,8 @@ class window.Mapper
     @mapOptions = 
       zoom: @zoom.initialView,
       center: @myLatLng,
+      minZoom: 3,
+      maxZoom: 18,
       styles: [
         {
           "featureType": "poi",
@@ -29,7 +32,7 @@ class window.Mapper
       ]
     @map = new google.maps.Map(document.getElementById('map'), @mapOptions)
     @infoWindow = new google.maps.InfoWindow()
-    @autocomplete = new google.maps.places.Autocomplete((self.field_complete),{types: ['geocode'], placeholder: null})
+    @autocomplete = new google.maps.places.Autocomplete((self.fieldAutoComplete),{types: ['geocode'], placeholder: null})
     @map.setCenter(@location)
     @markers = []
     @needies = []
@@ -39,6 +42,7 @@ class window.Mapper
     self.autocomplete.addListener('place_changed', self.fillInAddress);
     if self.opts.geolocation
       self.getLocation()
+      
   getJSON: (url)->
     $.getJSON url, (data)->
       $.each data, (i, e)->
@@ -87,9 +91,10 @@ class window.Mapper
       , 40
     return
   addMarkers: (needy)->
-    position = new google.maps.LatLng needy.latitude, needy.longitude
-    address = "#{needy.address}"
-    self.addMarker needy, position
+    if needy.latitude and needy.longitude
+      position = new google.maps.LatLng needy.latitude, needy.longitude
+      address = "#{needy.address}"
+      self.addMarker needy, position
 
   drawMarkers: (map)->
     $.each self.markers, (marker)->
@@ -104,10 +109,17 @@ class window.Mapper
       @markers[i].setMap map
       i++
   setPopUp: (needy)->
-    content = new String()
-    content = content.concat("<strong>Endereço</strong>: " + needy.address + "<br>")
-    content = content.concat("<strong>Latitude</strong>: " + needy.latitude + "<br>")
-    content = content.concat("<strong>Longitude</strong>: " + needy.longitude + "<br>")
+    content = '<div class="col s 12 box-needy">'
+    content = content.concat('<strong>Endereço</strong>:&nbsp;'+needy.address+'<br>')
+    content = content.concat('<strong>Latitude</strong>:&nbsp;'+needy.latitude+'<br>')
+    content = content.concat('<strong>Longitude</strong>:&nbsp;'+needy.longitude+'<br>')
+    if needy.name
+      content = content.concat('<strong>Nome</strong>:&nbsp;'+needy.name+'<br>')
+    if Number(needy.quantity_person) > 0
+      content = content.concat('<strong>Quantidade de Pessoas</strong>:&nbsp;'+needy.quantity_person+'<br>')
+    if needy.description
+      content = content.concat('<strong>Descrição</strong>:&nbsp;'+needy.description+'<br>')
+    content = content.concat('</div>')
     content
   bindInfoWindow: (marker, map, infowindow, details)->
     google.maps.event.addListener marker, 'click', (e)->

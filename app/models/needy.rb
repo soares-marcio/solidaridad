@@ -6,6 +6,13 @@ class Needy < ApplicationRecord
   has_many :users, through: :users_has_needy  
 
   validates :address, presence: true
+  validate :invalid_lat_lng
 
-  
+  private 
+
+  def invalid_lat_lng
+    if self.latitude.blank? && self.longitude.blank?
+      errors.add(:address, "inválido")
+    end
+  end
 end
