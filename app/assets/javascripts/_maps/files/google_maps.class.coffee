@@ -1,11 +1,12 @@
 class window.Mapper
   self = null
-  constructor: (mapped)->
+  constructor: (opts)->
     @markers = []
     self = @
-    @url = null
-    @lat = null
-    @lng = null
+    @url = opts.url
+    @lat = opts.latLng.lat
+    @lng = opts.latLng.lng
+    @field_complete = opts.field_complete
     @zoom = 
       initialView: 15
       closeView: 18
@@ -16,14 +17,13 @@ class window.Mapper
       center: @myLatLng
     @map = new google.maps.Map(document.getElementById('map'), @mapOptions)
     @infoWindow = new google.maps.InfoWindow()
-    @autocomplete = new google.maps.places.Autocomplete((document.getElementById('needy_address')),{types: ['geocode']})
+    @autocomplete = new google.maps.places.Autocomplete((document.getElementById(self.field_complete)),{types: ['geocode']})
     @map.setCenter(@location)
     @markers = []
     @needies = []
-  initialize: (opts)->
-    self.lat = opts.latLng.lat
-    self.lng = opts.latLng.lng
-    self.getJSON(opts.url)
+    self.initialize()
+  initialize: ()->
+    self.getJSON()
     self.autocomplete.addListener('place_changed', self.fillInAddress);
 
   getJSON: (url)->
@@ -106,12 +106,12 @@ class window.Mapper
       google.maps.event.addListener map, 'click', (e)->
         infowindow.close();
         marker.open = false;
-    # google.maps.event.addListener marker, 'mouseover', ()->
-    #   infowindow.setContent(details);
-    #   infowindow.open(map, marker)
-    # google.maps.event.addListener map, 'click', (e)->
-    #   infowindow.close();
-    #   marker.open = false;      
+    google.maps.event.addListener marker, 'mouseover', ()->
+      infowindow.setContent(details);
+      infowindow.open(map, marker)
+    google.maps.event.addListener map, 'click', (e)->
+      infowindow.close();
+      marker.open = false;      
   fillInAddress: ->
     place = self.autocomplete.getPlace()
     document.getElementById(self.lat).value = place.geometry.location.lat()
