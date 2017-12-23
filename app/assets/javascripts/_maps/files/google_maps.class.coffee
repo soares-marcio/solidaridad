@@ -1,12 +1,13 @@
 class window.Mapper
   self = null
-  constructor: (opts)->
-    @markers = []
+  constructor: (options)->
     self = @
-    @url = opts.url
-    @lat = opts.latLng.lat
-    @lng = opts.latLng.lng
-    @field_complete = opts.field_complete
+    @opts = options
+    @markers = []
+    @url = @opts.url
+    @lat = @opts.latLng.lat
+    @lng = @opts.latLng.lng
+    @field_complete = @opts.field_complete
     @zoom = 
       initialView: 15
       closeView: 18
@@ -25,7 +26,8 @@ class window.Mapper
   initialize: ()->
     self.getJSON()
     self.autocomplete.addListener('place_changed', self.fillInAddress);
-
+    if self.opts.geolocation
+      self.getLocation()
   getJSON: (url)->
     $.getJSON url, (data)->
       $.each data, (i, e)->
