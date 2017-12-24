@@ -8,6 +8,7 @@ class window.Mapper
     @lat = @opts.latLng.lat
     @lng = @opts.latLng.lng
     @icon = '/images/icon.png'
+    @optionsMarkerClusterer = { gridSize: 50, maxZoom: 15, imagePath: '/images/m'}
     @fieldAutoComplete = document.getElementById(@opts.field_complete)
     @zoom = 
       initialView: 15
@@ -39,6 +40,7 @@ class window.Mapper
   initialize: ()->
     self.getJSON()
     self.autocomplete.addListener('place_changed', self.fillInAddress);
+
     if self.opts.geolocation
       self.getLocation()
       
@@ -47,7 +49,7 @@ class window.Mapper
       $.each data, (i, e)->
         self.addMarkers(e)
         return
-      return
+      new MarkerClusterer(self.map, self.markers, self.optionsMarkerClusterer);
     return
 
   getLocation: ->
@@ -70,6 +72,7 @@ class window.Mapper
     details = self.setPopUp(needy)
     self.bindInfoWindow(marker, self.map, self.infoWindow, details)
     self.markers.push(marker)
+    
     google.maps.event.addListener marker, 'click', ->
       # @map.setZoom self.zoom.closeView
       self.map.panTo marker.getPosition()

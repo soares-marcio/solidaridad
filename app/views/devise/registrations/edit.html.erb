@@ -31,7 +31,7 @@
                     <%= f.password_field :password, autocomplete: "off" %>
                     <% if @minimum_password_length %>
                       <br />
-                      <em><%= @minimum_password_length %> mínimo de caracteres</em>
+                      <em> (mínimo de <%=@minimum_password_length%> caracteres)</em>
                     <% end %>
                     </div>
                   </div>
@@ -53,21 +53,25 @@
 
                   <div class="row">
                     <div class="input-field col s12">
-                      <%= f.submit "Atualizar" %>
+                      <%= f.submit "Atualizar", class: 'waves-effect waves-orange btn-large amber', data: {disable_with: "Atualizando ..."} %>
                     </div>
                   </div>
                 <% end %>
                 <div class="row">
                   <div class="input-field col s12">
-                    <h3>Cancelar minha conta</h3>
-                    <p>Infeliz? <%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete %></p>
+                    <p><%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Você tem certeza?", disable_with: "Cancelando conta ..." }, class: 'waves-effect waves-orange btn-large amber', method: :delete %></p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        <%= link_to "Voltar", :back %>
         </div>
+        
+        <ul class="collection">
+          <li class="collection-item">
+          <%= link_to "Voltar", :back %>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
