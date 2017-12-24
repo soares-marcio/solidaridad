@@ -159,3 +159,23 @@ Needy.create([
   }
 
 ])
+Category.delete_all
+Category.create([
+  {name: 'vestuário'},
+  {name:  'calçados'},
+  {name: 'alimentação'},
+  {name: 'água'},
+  {name: 'educação'},
+  {name: 'trabalho'},
+  {name: 'higiene bucal'},
+  {name: 'moradia'},
+  {name: 'educação'},
+  {name: 'lazer'},
+  {name: 'higiene'},
+  {name: 'Cobertores'},
+  {name: 'Material didático'},
+  {name: 'Material de limpeza'},
+  {name: 'Higiene pessoal'},
+  {name: 'Móveis'},
+
+])

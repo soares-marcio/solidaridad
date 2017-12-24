@@ -5,7 +5,7 @@ class Needy < ApplicationRecord
   has_many :users_has_needy, dependent: :destroy
   has_many :users, through: :users_has_needy  
 
-  validates :address, presence: true
+  validates :address, :category_ids, presence: true
   validate :invalid_lat_lng
 
   private 

@@ -128,6 +128,7 @@ pt-BR:
         address: Endereço
         quantity_person: Quantidade de pessoas
         description: Descrição
+        category_ids: necessidade que você poderá contribuir
  
       # will translate User attribute "login" as "Handle"
     errors:

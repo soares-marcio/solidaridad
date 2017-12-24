@@ -9,7 +9,6 @@ class window.Mapper
     @lng = @opts.latLng.lng
     @icon = '/images/icon.png'
     @fieldAutoComplete = document.getElementById(@opts.field_complete)
-    @fieldAutoComplete.placeholder = ''
     @zoom = 
       initialView: 15
       closeView: 18

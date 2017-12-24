@@ -46,6 +46,10 @@ body {
 .parallax-container .section {
   width: 100%;
 }
+label.active,
+.prefix.active{
+  color:#ffd740!important;
+}
  
  @media only screen and (max-width : 992px) {
    .parallax-container .section {

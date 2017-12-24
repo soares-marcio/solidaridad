@@ -3,6 +3,7 @@ class NeediesController < ApplicationController
   def index
     @needy = Needy.new
     @needies = Needy.all
+    @categories = Category.all
     respond_to do |format|
       format.html
       format.json
@@ -25,6 +26,6 @@ class NeediesController < ApplicationController
 
   private
     def needy_params
-      params.require(:needy).permit(:name, :address, :latitude, :longitude, :description, :quantity_person)
+      params.require(:needy).permit(:name, :address, :latitude, :longitude, :description, :quantity_person, category_ids: [])
     end
 end

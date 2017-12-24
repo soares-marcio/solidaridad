@@ -18,40 +18,44 @@
             <div id="add-needy">
               <div class="card-panel">
                 <div class="row">
-                  <%= form_for(@needy, html: {class: "col s12"}) do |form| %>
-                    <%=form.hidden_field :latitude %>
-                    <%=form.hidden_field :longitude%>
+                  <%= form_for(@needy, html: {class: "col s12"}) do |f| %>
+                    <%=f.hidden_field :latitude %>
+                    <%=f.hidden_field :longitude%>
                     <%=render partial: '_content_for/error_message', locals: {object: @needy}%>                    
                     <div class="row">
                       <div class="input-field col s12">
                         <i class="material-icons prefix">home</i>
-                        <%= form.text_field :address %>
-                        <%= form.label :address%>
+                        <%= f.text_field :address, placeholder: '' %>
+                        <%= f.label :address%>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s12">
                         <i class="material-icons prefix">account_circle</i>
-                        <%= form.text_field :name %>
-                        <%= form.label :name%>
+                        <%= f.text_field :name %>
+                        <%= f.label :name%>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="input-field col s12">
+                      <div class="input-field col s6">
                         <i class="material-icons prefix">exposure_plus_1</i>
-                        <%= form.number_field :quantity_person, min: 1 %>
-                        <%= form.label :quantity_person%>
+                        <%= f.number_field :quantity_person, min: 1 %>
+                        <%= f.label :quantity_person%>
                       </div> 
+                      <div class="input-field col s6">          
+                        <%= f.collection_select :category_ids, Category.all, :id, :name, {prompt: 'Selecione com o que contribuir'}, {multiple: true, class: 'needy_category'}%>
+                        <%= f.label :category_ids%>
+                      </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s12">
                         <i class="material-icons prefix">mode_edit</i>
-                        <%= form.text_area :description,  class: 'materialize-textarea' %>
-                        <%= form.label :description%>
+                        <%= f.text_area :description,  class: 'materialize-textarea' %>
+                        <%= f.label :description%>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
-                          <%= form.submit class: "waves-effect waves-light btn-large amber btn-form", value: 'Adicionar', data: {disable_with: 'Adicionando...'}%>
+                          <%= f.submit class: "waves-effect waves-orange btn-large amber btn-form", value: 'Adicionar', data: {disable_with: 'Adicionando...'}%>
                         </div>
                       </div>
                     </div>
