@@ -1,0 +1,51 @@
+<div class="section no-pad-bot">
+  <div class="container">
+    <div class="row center form-search-main">
+      <div class="card amber accent-3">
+        <div class="card-content">
+            <h3>Registrar</h3>
+          </div>
+          <div id="add-user">
+            <div class="card-panel">
+              <div class="row">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <%= f.email_field :email, autofocus: true %>
+                    <%= f.label :email %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <%= f.password_field :password, autocomplete: "off" %>
+                    <%= f.label :password %>
+                    <% if @minimum_password_length %>
+                      <em>(<%= @minimum_password_length %> characters minimum)</em>
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <%= f.label :password_confirmation %><br />
+                    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <%= f.submit "Registrar", class: 'waves-effect waves-orange btn-large amber', data: {disable_with: "Registrando ..."} %>
+                  </div>
+                </div>
+              <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+

@@ -55,5 +55,5 @@ pt-BR:
       not_found: "não encontrado"
       not_locked: "não foi bloqueado"
       not_saved:
-        one: "Resolva 1 erro abaixo:"
-        other: "Resolva %{count} erros abaixo:"
+        one: "Existe 1 erro abaixo para corrigir:"
+        other: "Existem %{count} erros abaixo para serem corrigidos:"

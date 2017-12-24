@@ -122,13 +122,21 @@ pt-BR:
   activerecord:
     models:
       needy: Pessoas em estado de vulnerabilidade
+      user: Usuário Doador
     attributes:
+      user:
+        password: Senha
+        password_confirmation: Confirmação de senha
+        name: Nome
+        email: E-mail
+        username: ''
+        remember_me: Lembrar-me
       needy:
         name: Nome
         address: Endereço
         quantity_person: Quantidade de pessoas
         description: Descrição
-        category_ids: necessidade que você poderá contribuir
+        category_ids: Necessidade
  
       # will translate User attribute "login" as "Handle"
     errors:

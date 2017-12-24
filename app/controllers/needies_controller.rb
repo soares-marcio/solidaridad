@@ -6,7 +6,7 @@ class NeediesController < ApplicationController
     @categories = Category.all
     respond_to do |format|
       format.html
-      format.json
+      format.json {render json: @needies}
     end
   end
   

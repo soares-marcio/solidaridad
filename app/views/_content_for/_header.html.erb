@@ -1,3 +1,17 @@
+<ul id="dropdown-login" class="dropdown-content">
+  <%if user_signed_in?%>
+    <li>
+      <%=link_to 'Sair', destroy_user_session_path, method: :delete%>
+    </li>
+  <%else%>
+      <li>
+        <%=link_to 'Entrar', new_user_session_path%>
+      </li>
+      <li>
+        <%=link_to 'Registrar', new_user_registration_path%>             
+      </li>
+  <%end%>
+</ul>
 <nav class="amber accent-2" role="navigation">
   <div class="nav-wrapper container">
     <a id="logo-container" href="<%=url_for(root_path)%>" class="brand-logo">Logo</a>
@@ -6,16 +20,13 @@
       <li><a href="/support">Apoiar</a></li>
       <li><a href="/">Instituições</a></li>
       <li><a href="/">Contato</a></li>
-      <li><a href="/users/sign_in">Login</a></li>
-      <li><a href="/users/sign_up">Register</a></li>
+      <li><a class="dropdown-button" href="javascript: void(0)" data-activates="dropdown-login">Conta<i class="material-icons right">arrow_drop_down</i></a></li>      
     </ul>
     <ul id="nav-mobile" class="side-nav">
       <li><a href="/">Main</a></li>
       <li><a href="/support">Apoiar</a></li>
       <li><a href="/">Instituições</a></li>
       <li><a href="/">Contato</a></li>
-      <li><a href="/users/sign_in">Login</a></li>
-      <li><a href="/users/sign_up">Register</a></li>      
     </ul>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>
