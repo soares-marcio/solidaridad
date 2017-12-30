@@ -1,9 +1,13 @@
 #map {
-  height: 100%;
+  height: 780px;
 }
 
 .box-needy{
   min-height: auto;
   max-width: 300px;
   margin: auto;
+}
+
+.pac-container {
+  z-index: 100000;
 }
