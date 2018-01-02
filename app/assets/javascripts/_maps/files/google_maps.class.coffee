@@ -74,7 +74,6 @@ class window.Mapper
     self.markers.push(marker)
     
     google.maps.event.addListener marker, 'click', ->
-      # @map.setZoom self.zoom.closeView
       self.map.panTo marker.getPosition()
       self.smoothZoom(self.map, self.zoom.closeView, self.map.getZoom())
       return
@@ -95,7 +94,6 @@ class window.Mapper
   addMarkers: (needy)->
     if needy.latitude and needy.longitude
       position = new google.maps.LatLng needy.latitude, needy.longitude
-      address = "#{needy.address}"
       self.addMarker needy, position
 
   drawMarkers: (map)->
@@ -156,7 +154,7 @@ class window.Mapper
     return null;
 
   removeListeners: ->
-    _.each markers, (marker) ->
+    $.each self.markers, (marker) ->
       google.maps.event.clearInstanceListeners(marker)
 
   deleteMarkers: ->
