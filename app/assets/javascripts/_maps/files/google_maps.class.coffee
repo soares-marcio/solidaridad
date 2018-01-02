@@ -120,7 +120,6 @@ class window.Mapper
     if needy.description
       content = content.concat('<strong>Descrição</strong>:&nbsp;'+needy.description+'<br>')
     if needy.categories.length > 0
-      console.log needy.categories
       content = content.concat('<strong>Necessidades imediatas</strong>:&nbsp;'+(needy.categories.map (category)-> category.name).join(', ')+'<br>')
     content = content.concat('</div>')
     content
