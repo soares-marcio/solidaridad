@@ -12,4 +12,4 @@ $(document).on 'turbolinks:load', ->
   );
   $('select').material_select()
   $('.button-collapse').sideNav();
-  $('.parallax').parallax();
+  $('.modal').modal();
