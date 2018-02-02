@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   root 'needies#index'
   resources :needies
-  # resources :pages
 
   mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
 end
